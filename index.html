@@ -1,0 +1,66 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+
+<html lang="ja">
+
+  <head>
+     <script type="text/x-mathjax-config">
+
+       MathJax.Hub.Config({TeX:{equationNumbers:{autoNumber:"AMS"}}});
+
+    </script>
+
+    <script type="text/javascript" async 
+
+        src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-MML-AM_CHTML">
+
+    </script>
+
+  </head>
+
+<body>
+<h3>カルマンフィルタの１自由度粘弾性振動系への適用</h3>
+  <p>係数行列\(\mathbf{P}\)、\(\mathbf{Q}\)を用いて
+    <a href="https://aoyamakohbo.github.io/VscElsVib1D/">１自由度粘弾性振動系</a>
+    の離散時間状態方程式は次式で記述されます。</p>
+    \begin{align}
+    \mathbf{x}(n+1)=\mathbf{P}\mathbf{x}(n) + \mathbf{Q}u(n) \label{eq:DiscStateEq}
+    \end{align}
+
+  <p>１自由度粘弾性振動系の固有振動数\(\omega_n=6.28×10\)[rad/s]、粘性係数\(\zeta=0.2\)、
+    サンプリング周期\(T=0.005\)[s]とすると、
+  行列\(\mathbf{P}\)、\(\mathbf{Q}\)は次式になります。</p>
+  \begin{align}
+    \mathbf{P}=
+      \left[
+        \begin{array}{@{\,}cc}
+          0.9531&0.004222\\
+          -18.23&0.8370
+        \end{array}
+      \right],~~~
+      \mathbf{Q}=
+      \left[
+        \begin{array}{@{\,}c}
+          -0.04691\\
+          18.23
+        \end{array}
+      \right].
+        \label{eq:RtnEqn}
+  \end{align}
+
+      式\eqref{eq:DiscStateEq}に対する<a href="https://aoyamakohbo.github.io/KalmanFltr/">定常カルマンフィルタ</a>は次式となります。</p>
+    \begin{align}
+      \left.
+      \begin{array}{@{\,}rl}
+        {\mathbf{q}}(n+1)&=~\mathbf{P}\hat{\mathbf{x}}(n)+\mathbf{Q}\mathbf{u}(n)\\
+        \mathbf{e}(n)&=~\mathbf{y}(n)-\mathbf{C}\mathbf{q}(n)\\
+        \hat{\mathbf{x}}(n)&=~{\mathbf{q}}(n)+\mathbf{K}\mathbf{e}(n)    
+      \end{array}\label{eq:KalmanFilt}
+      \right\}  
+    \end{align}
+    <p>\(\hat{\mathbf{x}}\)は状態量\(\mathbf{x}\)の推定量、
+      \(\mathbf{q}\)は状態観測器の状態量であり、状態量\(\mathbf{x}\)の未来予測値となっています。
+    \(\mathbf{e}(n)\)は計測値\(\mathbf{y}(n)\)と状態観測器の出力\(\mathbf{C}\mathbf{q}(n)\)の偏差です。</p>
+<p><a href="https://aoyamakohbo.github.io/Craftlogy/">->TOP</a></p>
+</body>
+
+</html>
