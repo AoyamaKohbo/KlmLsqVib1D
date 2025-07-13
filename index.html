@@ -79,7 +79,8 @@ u(n) = \sin(2\pi nfT)\label{eq:SineInp}
   \end{align}
 
   <h3>§逐次最小二乗法の適用</h3>
-  <p>式\eqref{eq:RtnEqn}、\eqref{eq:DiffX}で得られる状態量\(\mathbf{x}=[x(n)~~\dot{x}^\prime(n)]^T\)を用いて
+  <p>式\eqref{eq:DiffX}が未来値\(y(n+1)\)を含んでいるので、ここでは1ステップ過去(\(n-1\))を現在(n)とて記述します。</p>
+  <p>式\eqref{eq:RtnEqn}、\eqref{eq:DiffX}で得られる状態量\(\mathbf{x}(n)=[x(n)~~\dot{x}^\prime(n)]^T\)を用いて
     逐次最小二乗法を適用するために次の変数を導入します。</p>
   \begin{align}
     \mathbf{y}(n)=
@@ -119,23 +120,23 @@ u(n) = \sin(2\pi nfT)\label{eq:SineInp}
     \right\}
   \end{align}
 
-<p>\(\hat{\mathbf{A}}\)、\(\mathbf{K}\)、\(\mathbf{R}\)の初期値をそれぞれ次式とします。</p>
+<p>\(\hat{\mathbf{A}}(n)\)、\(\mathbf{K}(n)\)、\(\mathbf{R}(n)\)の初期値をそれぞれ次式とします。</p>
   \begin{align*}
-    \hat{\mathbf{A}}=
+    \hat{\mathbf{A}}(0)=
       \left[
        \begin{array}{@{\,}ccc}
          0&0&0\\
          0&0&0
        \end{array}
      \right],~~~
-      \mathbf{K}=
+      \mathbf{K}(0)=
       \left[
        \begin{array}{@{\,}c}
          0\\
          0
        \end{array}
      \right],~~~
-         \mathbf{R}=
+         \mathbf{R}(0)=
       \left[
        \begin{array}{@{\,}ccc}
          1&0&0\\
@@ -146,8 +147,8 @@ u(n) = \sin(2\pi nfT)\label{eq:SineInp}
   \end{align*}
 
  <h3>§カルマンフィルターの適用</h3>
-<p>逐次最小二乗法\eqref{eq:RtLstMtd}によって同定される係数行列\eqref{eq:LstEQ}の\(\hat{\mathbf{P}}\)、\(\hat{\mathbf{Q}}\)を用いて、
-  定常Kalmanフィルターを次式とします。</p>
+<p>逐次最小二乗法\eqref{eq:RtLstMtd}によって同定される係数行列\eqref{eq:LstEQ}の\([\hat{\mathbf{P}}~~\hat{\mathbf{Q}}]=\mathbf{A}(n-1)\)
+  として、定常Kalmanフィルターを次式とします。</p>
 \begin{align}
   \left.
     \begin{array}{@{\,}rl}
